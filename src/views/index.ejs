@@ -1,4 +1,17 @@
 <body>
   <h1>Welcome to my todo list!</h1>
-  <h2>I use NodeJS and Mongo</h2>
+  <h2>Built using NodeJS and Mongoose</h2>
+  <ul>
+    List here
+    <% if(todos.length > 0) { %>
+      <% todos.map(todo => { %>
+        <li>
+          <p class="title"><%= todo.title %></p>
+          <p class="description"><%= todo.description%></p>
+        </li>
+      <% }) %>
+      <% } else { %>
+        <p>No Todos</p>
+    <% } %>
+  </ul>
 </body>
