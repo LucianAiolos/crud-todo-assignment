@@ -1,8 +1,11 @@
 <body>
+  <nav>
+    <a href="/todos">Home</a>
+  </nav>
   <h1>Welcome to my todo list!</h1>
   <h2>Built using NodeJS and Mongoose</h2>
+  <a href="/todoForm">Add Todo</a>
   <ul>
-    List here
     <% if(todos.length > 0) { %>
       <% todos.map(todo => { %>
         <li>

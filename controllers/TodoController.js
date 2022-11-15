@@ -12,9 +12,13 @@ const createTodo = (req, res) => {
     if(err) {
       res.send(err)
     }
-    res.json(todoItem)
+    res.redirect('/todos')
   })
 }
+
+// const todoForm = (req, res) => {
+//   const
+// }
 
 const getTodoList = (req, res) => {
   Todo.find((err, todos) => {
