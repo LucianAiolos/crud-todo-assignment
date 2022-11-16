@@ -1,20 +1,32 @@
+<head>
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
 <body>
-  <nav>
+  <!-- <nav>
     <a href="/todos">Home</a>
-  </nav>
+  </nav> -->
   <h1>Welcome to my todo list!</h1>
   <h2>Built using NodeJS and Mongoose</h2>
-  <a href="/todoForm">Add Todo</a>
+  <a class="add-button" href="/todoForm">Add Todo</a>
+  <ul class="labels-ul">
+    <li>
+      <p class="label">Title</p>
+      <p class="label">Description</p>
+      <p class="label">Done?</p>
+    </li>
+  </ul>
   <ul>
     <% if(todos.length > 0) { %>
       <% todos.map(todo => { %>
         <li>
           <p class="title"><%= todo.title %></p>
           <p class="description"><%= todo.description%></p>
+          <p class="close" id="close">X</p>
         </li>
       <% }) %>
       <% } else { %>
         <p>No Todos</p>
     <% } %>
   </ul>
+  <script src="../index.js"></script>
 </body>

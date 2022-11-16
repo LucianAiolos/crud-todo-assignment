@@ -4,6 +4,7 @@ const ejs = require('ejs')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 
+
 require('dotenv').config()
 
 
@@ -18,6 +19,8 @@ server.use(bodyParser.json())
 server.use(express.static('public')) // for css ??
 // router
 server.use(router)
+// CSS
+server.use(express.static('public'))
 
 const PORT = process.env.PORT
 const DB_URL = process.env.DB_URL

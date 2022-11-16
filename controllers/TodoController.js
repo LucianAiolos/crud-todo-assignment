@@ -8,12 +8,14 @@ const createTodo = (req, res) => {
     isCompleted: req.body.isCompleted
   })
 
-  todoItem.save((err, todoItem) => {
-    if(err) {
-      res.send(err)
-    }
+  todoItem.save()
+    .then(todoItem => {
     res.redirect('/todos')
-  })
+    })
+    .catch(err => {
+      res.status(400).send("unable to save to database")
+    })
+  
 }
 
 // const todoForm = (req, res) => {
