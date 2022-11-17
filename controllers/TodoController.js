@@ -18,9 +18,6 @@ const createTodo = (req, res) => {
   
 }
 
-// const todoForm = (req, res) => {
-//   const
-// }
 
 const getTodoList = (req, res) => {
   Todo.find((err, todos) => {
@@ -35,7 +32,7 @@ const getTodoList = (req, res) => {
   })
 }
 
-const updateTodo = (req, res) => {
+const findTodo = (req, res) => {
   let id = req.params.id
   console.log('id is', id)
   Todo.findById(id, (err, todo) => {
@@ -49,22 +46,27 @@ const updateTodo = (req, res) => {
       }
     }
   })
-  // Todo.fintIdAndUpdate(
-  //   { id: req.params.id },
-  //   { $set: {
-  //       title: req.body.title,
-  //       description: req.body.description,
-  //       isComplete: req.body.isCompleted
-  //   }},
-  //   { new: true },
-  //   (err, Todo) => {
-  //     if(err) {
-  //       res.send(err, "There was an error updating your todo")
-  //     } else {
-  //       res.json(Todo)
-  //     }
-  //   }
-  // )
+}
+
+const updateTodo = (req, res) => {
+  console.log('updating...', req.params.id)
+  let id = req.params.id
+   Todo.findByIdAndUpdate( id,
+    // { id: req.params.id },
+    { $set: {
+        title: req.body.title,
+        description: req.body.description,
+        isComplete: req.body.isCompleted
+    }},
+    { new: true },
+    (err, todo) => {
+      if(err) {
+        res.send(err, "There was an error updating your todo")
+      } else {
+        res.redirect('/todos')
+      }
+    }
+  )
 }
 
 // const deleteTodoFunction = (req, res) => {
@@ -77,7 +79,9 @@ const deleteTodo = (req, res) => {
     .then(()=> res.redirect('/todos'), console.log('deleted!!'))
 }
 
+
+
 module.exports = {
-  createTodo, getTodoList, updateTodo, deleteTodo, 
+  createTodo, getTodoList, updateTodo, deleteTodo, findTodo,
   // deleteTodoFunction
 }
