@@ -13,6 +13,8 @@
       <p class="label">Title</p>
       <p class="label">Description</p>
       <p class="label">Done?</p>
+      <p class="label">Delete</p>
+      <p class="label">Edit</p>
     </li>
   </ul>
   <ul>
@@ -21,12 +23,18 @@
         <li>
           <p class="title"><%= todo.title %></p>
           <p class="description"><%= todo.description%></p>
-          <p class="close" id="close">X</p>
+          <p class="close" id="close">C</p>
+          <a class="delete" id="delete" href="/delete-todo/<%= todo._id %>">X</a>
+          <a class="edit" href="/todo-edit/<%= todo._id %>">E</a>
         </li>
       <% }) %>
       <% } else { %>
         <p>No Todos</p>
     <% } %>
   </ul>
-  <script src="../index.js"></script>
+  <script>
+    const deleteFunction = () => {
+      console.log(hi)
+    }
+  </script>
 </body>

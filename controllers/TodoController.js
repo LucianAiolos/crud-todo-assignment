@@ -36,29 +36,48 @@ const getTodoList = (req, res) => {
 }
 
 const updateTodo = (req, res) => {
-  Todo.fintOneAndUpdate(
-    { id: req.params.id },
-    { $set: {
-        title: req.body.title,
-        description: req.body.description,
-        isComplete: req.body.isCompleted
-    }},
-    { new: true },
-    (err, Todo) => {
-      if(err) {
-        res.send(err)
+  let id = req.params.id
+  console.log('id is', id)
+  Todo.findById(id, (err, todo) => {
+    if(err) {
+      res.redirect('/todos')
+    } else {
+      if(todo == null) {
+        res.redirect('/')
       } else {
-        res.json(Todo)
+        res.render('update', {todo: todo})
       }
     }
-  )
+  })
+  // Todo.fintIdAndUpdate(
+  //   { id: req.params.id },
+  //   { $set: {
+  //       title: req.body.title,
+  //       description: req.body.description,
+  //       isComplete: req.body.isCompleted
+  //   }},
+  //   { new: true },
+  //   (err, Todo) => {
+  //     if(err) {
+  //       res.send(err, "There was an error updating your todo")
+  //     } else {
+  //       res.json(Todo)
+  //     }
+  //   }
+  // )
 }
 
+// const deleteTodoFunction = (req, res) => {
+//   Todo.deleteOne({ id: req.params.id })
+//     .then(()=> res.json({ message: "Item has been deleted"}))
+// }
+
 const deleteTodo = (req, res) => {
-  Todo.deleteOne({ id: req.params.id })
-    .then(()=> res.json({ message: "Item has been deleted"}))
+  Todo.findByIdAndRemove({ _id: req.params.id})
+    .then(()=> res.redirect('/todos'), console.log('deleted!!'))
 }
 
 module.exports = {
-  createTodo, getTodoList, updateTodo, deleteTodo
+  createTodo, getTodoList, updateTodo, deleteTodo, 
+  // deleteTodoFunction
 }

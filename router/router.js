@@ -6,6 +6,7 @@ const {
   getTodoList,
   updateTodo, 
   deleteTodo,
+  // deleteTodoFunction,
   todoForm,
 } = require('../controllers/TodoController')
 
@@ -20,8 +21,10 @@ router.get("/", (req, res) => {
 
 router.post('/todos', createTodo)
 router.get('/todos', getTodoList)
-router.put('/todo/"id', updateTodo)
-router.delete('/todos/:id', deleteTodo)
+router.get('/todo-edit/:id', updateTodo)
+// router.post('/todo-edit/:id'), updateTodo)
+router.get('/delete-todo/:id', deleteTodo)
+// router.delete('todo/:id', deleteTodoFunction)
 router.get('/todoForm', (req, res ) => {
   res.render('todoForm')
 })

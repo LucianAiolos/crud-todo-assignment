@@ -5,14 +5,15 @@
   <nav>
     <a href="/todos">Back to List</a>
   </nav>
-  <form action="/todos" method="post">
-    <h3>Please fill out form!</h3>
+  <form action="/todo-edit/<%= todo._id %>" method="post">
+    <h3>Update Your Todo!</h3>
     <label for="title">Title</label>
     <input 
       type="text" 
       placeholder="Todo Title"
       name="title"
       id="title"
+      value="<%= todo.title %>"
     >
     <br>
     <label for="description">Description</label>
@@ -21,6 +22,7 @@
       name="description"
       id="description"
       placeholder="Lunch at so and so..."
+      value="<%= todo.description"
     >
     <br>
     <span>
